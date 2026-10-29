@@ -46,8 +46,8 @@ min_magnitude = st.slider("Minimum Magnitude", min_value=0.0, max_value=10.0, va
 filtered_realtime_data = realtime_earthquake_data[realtime_earthquake_data["magnitude"] >= min_magnitude]
 filtered_historical_data = historical_earthquake_data[historical_earthquake_data["magnitude"] >= min_magnitude]
 
-# Create a Plotly map for real-time earthquakes
-fig_realtime = px.scatter_mapbox(
+# Create a Plotly map for real-time earthquakes (Updated to px.scatter_map)
+fig_realtime = px.scatter_map(
     filtered_realtime_data,
     lat="latitude",
     lon="longitude",
@@ -60,8 +60,8 @@ fig_realtime = px.scatter_mapbox(
     title="Recent Earthquakes (Last Hour)"
 )
 
-# Create a Plotly map for historical earthquakes
-fig_historical = px.scatter_mapbox(
+# Create a Plotly map for historical earthquakes (Updated to px.scatter_map)
+fig_historical = px.scatter_map(
     filtered_historical_data,
     lat="latitude",
     lon="longitude",
@@ -74,8 +74,9 @@ fig_historical = px.scatter_mapbox(
     title="Historical Earthquakes (Last Month)"
 )
 
-fig_realtime.update_layout(mapbox_style="open-street-map")
-fig_historical.update_layout(mapbox_style="open-street-map")
+# Updated map style parameter name
+fig_realtime.update_layout(map_style="open-street-map")
+fig_historical.update_layout(map_style="open-street-map")
 
 # Display the maps
 st.plotly_chart(fig_realtime)
